@@ -1,7 +1,8 @@
 <?php
-include_once 'PDO_DB_LIB.class.php';
-
+namespace lib\db;
+include("PDO_DB_LIB.class.php");
 class DBPlus{
+	
 	private static $aConnectData = array(
 		"S"=>array(
 			"ChatRoom"=>array("host"=>"localhost", "user"=>"DB_S", "pwd"=>"DB_S")
@@ -25,9 +26,12 @@ class DBPlus{
 			return;
 		}
 		
-		self::$aInitDBLib[$_sDBName][$_sHost] = new PDO_DB_LIB($aCnt["host"], $_sDBName, $aCnt["user"], $aCnt["pwd"]);
+		self::$aInitDBLib[$_sDBName][$_sHost] = new \lib\db\PDO_DB_LIB($aCnt["host"], $_sDBName, $aCnt["user"], $aCnt["pwd"]);
 		return self::$aInitDBLib[$_sDBName][$_sHost];
 	}
 	
 }
+// $aData = DBPlus::getDB("ChatRoom", "S")->query("SELECT * FROM `UserData`");
+// echo "<pre>";
+// print_r($aData);
 ?>
